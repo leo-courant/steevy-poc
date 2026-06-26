@@ -1,0 +1,27 @@
+[project]
+name = "steevy-poc"
+version = "0.1.0"
+description = "RAG-over-XML deep agent with a Chainlit frontend (POC)"
+requires-python = ">=3.11"
+dependencies = [
+    "chainlit>=2.11.1",
+    "deepagents>=0.6.12",
+    "fastembed>=0.8.0",
+    "langchain-openai>=1.3.3",
+    "pydantic-settings>=2.14.2",
+    "qdrant-client>=1.18.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Map the on-disk `backend/src/<name>` folders to top-level import packages
+# `config`, `rag`, and `agent`. Keeps the spec's folder layout while staying
+# import-clean (`from rag.ingest import run_ingestion`, etc.).
+[tool.hatch.build.targets.wheel]
+packages = [
+    "backend/src/config",
+    "backend/src/rag",
+    "backend/src/agent",
+]

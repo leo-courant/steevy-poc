@@ -1,0 +1,11 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:latest # pin to a specific vX.Y.Z for full reproducibility
+    container_name: steevy-qdrant
+    ports:
+      - "6333:6333" # REST API + web dashboard (http://localhost:6333/dashboard)
+      - "6334:6334" # gRPC API
+    environment:
+      QDRANT__SERVICE__API_KEY: ${QDRANT_API_KEY:-local-dev-key}
+    volumes:
+      - ./qdrant_storage:/qdrant/storage

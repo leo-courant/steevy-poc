@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knowledge_base>
+  <article id="qdrant-overview" title="What is Qdrant?">
+    Qdrant is an open-source vector database and similarity search engine. It stores
+    high-dimensional vectors (embeddings) together with a JSON payload and lets you
+    search for the nearest vectors to a query. It exposes a REST API and a faster gRPC
+    API, and ships a web dashboard for inspecting collections.
+  </article>
+
+  <article id="deep-agents" title="What is a deep agent?">
+    A deep agent is an agent pattern that combines explicit planning, long-lived
+    instructions, a virtual file system, and the ability to call tools and delegate to
+    sub-agents. The deepagents library implements this pattern on top of LangGraph, so a
+    deep agent is a compiled graph you can invoke or stream.
+  </article>
+
+  <article id="rag" title="What is retrieval-augmented generation?">
+    Retrieval-augmented generation (RAG) improves a language model's answers by first
+    retrieving relevant passages from an external knowledge base and then conditioning
+    the model on those passages. A typical pipeline parses source documents, splits them
+    into chunks, embeds the chunks into vectors, and stores them in a vector database
+    such as Qdrant. At query time the question is embedded and the most similar chunks
+    are retrieved and passed to the model.
+  </article>
+
+  <article id="fastembed" title="What is FastEmbed?">
+    FastEmbed is a lightweight, fast embedding library maintained by the Qdrant team. It
+    runs embedding models locally on CPU using ONNX, so it needs no API key. The model
+    BAAI/bge-small-en-v1.5 produces 384-dimensional vectors and is a good default for
+    English text.
+  </article>
+</knowledge_base>
