@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<AirTrafficManagementSystem version="1.2">
+
+    <ControlCenters>
+        <ControlCenter id="ATCC-MEL">
+            <Name>Melbourne Area Control Center</Name>
+            <Location>
+                <City>Melbourne</City>
+                <Country>Australia</Country>
+            </Location>
+            <Sectors>
+                <Sector id="SEC-ML-01" type="EnRoute" altitudeMin="245" altitudeMax="600">
+                    <Frequency unit="MHz">125.75</Frequency>
+                    <Controller>
+                        <Name>James Turner</Name>
+                        <ExperienceYears>8</ExperienceYears>
+                    </Controller>
+                </Sector>
+                <Sector id="SEC-ML-02" type="Approach" altitudeMin="0" altitudeMax="245">
+                    <Frequency unit="MHz">119.80</Frequency>
+                    <Controller>
+                        <Name>Emily Chen</Name>
+                        <ExperienceYears>5</ExperienceYears>
+                    </Controller>
+                </Sector>
+            </Sectors>
+        </ControlCenter>
+    </ControlCenters>
+
+    <Airlines>
+        <Airline code="QFA">
+            <Name>Qantas Airways</Name>
+            <Country>Australia</Country>
+        </Airline>
+        <Airline code="SIA">
+            <Name>Singapore Airlines</Name>
+            <Country>Singapore</Country>
+        </Airline>
+    </Airlines>
+
+    <Flights>
+        <Flight id="FL-001">
+            <Callsign>QFA402</Callsign>
+            <AirlineRef code="QFA"/>
+            <Aircraft>
+                <Model>Boeing 737-800</Model>
+                <WakeCategory>Medium</WakeCategory>
+            </Aircraft>
+            <Route>
+                <Departure airport="YMML" time="2026-07-01T08:30:00Z"/>
+                <Arrival airport="YSSY" estimatedTime="2026-07-01T09:55:00Z"/>
+                <Waypoints>
+                    <Waypoint name="DOSEL" order="1"/>
+                    <Waypoint name="MNG" order="2"/>
+                    <Waypoint name="TESAT" order="3"/>
+                </Waypoints>
+            </Route>
+            <CurrentStatus>
+                <Position lat="-37.5" lon="144.8"/>
+                <Altitude unit="FL">350</Altitude>
+                <Speed unit="knots">450</Speed>
+                <AssignedSector ref="SEC-ML-01"/>
+            </CurrentStatus>
+        </Flight>
+
+        <Flight id="FL-002">
+            <Callsign>SIA231</Callsign>
+            <AirlineRef code="SIA"/>
+            <Aircraft>
+                <Model>Airbus A350</Model>
+                <WakeCategory>Heavy</WakeCategory>
+            </Aircraft>
+            <Route>
+                <Departure airport="WSSS" time="2026-07-01T02:00:00Z"/>
+                <Arrival airport="YMML" estimatedTime="2026-07-01T11:30:00Z"/>
+                <Waypoints>
+                    <Waypoint name="KARMA" order="1"/>
+                    <Waypoint name="TINDO" order="2"/>
+                </Waypoints>
+            </Route>
+            <CurrentStatus>
+                <Position lat="-20.1" lon="130.4"/>
+                <Altitude unit="FL">380</Altitude>
+                <Speed unit="knots">470</Speed>
+                <AssignedSector ref="SEC-ML-01"/>
+            </CurrentStatus>
+        </Flight>
+    </Flights>
+
+    <Weather>
+        <AirportWeather airport="YMML">
+            <ObservationTime>2026-07-01T10:00:00Z</ObservationTime>
+            <Wind direction="180" speed="12"/>
+            <Visibility unit="km">10</Visibility>
+            <Conditions>Clear</Conditions>
+        </AirportWeather>
+    </Weather>
+
+</AirTrafficManagementSystem>
