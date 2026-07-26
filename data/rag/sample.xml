@@ -2,7 +2,7 @@
     
   <boats>
         
-    <boat id="B201X">
+    <boat id="B201">
             
       <name>Northstar Voyager</name>
             
@@ -605,6 +605,74 @@
         <email>mbappe.dictator@gmail.com</email>
               
       </owner>
+            
+      <engine/>
+            
+      <sails/>
+            
+      <equipment/>
+          
+    </boat>
+        
+    <boat id="P001">
+            
+      <name>Pirate</name>
+            
+      <owner>
+                
+        <firstName>Eiffel</firstName>
+                
+        <lastName>Sparrow</lastName>
+              
+      </owner>
+            
+      <engine/>
+            
+      <sails/>
+            
+      <equipment/>
+          
+    </boat>
+        
+    <boat id="B1618">
+            
+      <name>Pirate</name>
+            
+      <owner>
+                
+        <firstName>Jack</firstName>
+                
+        <lastName>Sparrow</lastName>
+              
+      </owner>
+            
+      <engine/>
+            
+      <sails/>
+            
+      <equipment/>
+          
+    </boat>
+        
+    <boat id="PAR15">
+            
+      <name>Paris</name>
+            
+      <owner/>
+            
+      <engine/>
+            
+      <sails/>
+            
+      <equipment/>
+          
+    </boat>
+        
+    <boat id="MEL001">
+            
+      <name>Melbourne</name>
+            
+      <owner/>
             
       <engine/>
             
