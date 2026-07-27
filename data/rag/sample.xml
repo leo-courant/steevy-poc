@@ -1,32 +1,1295 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<knowledge_base>
-  <article id="qdrant-overview" title="What is Qdrant?">
-    Qdrant is an open-source vector database and similarity search engine. It stores
-    high-dimensional vectors (embeddings) together with a JSON payload and lets you
-    search for the nearest vectors to a query. It exposes a REST API and a faster gRPC
-    API, and ships a web dashboard for inspecting collections.
-  </article>
-
-  <article id="deep-agents" title="What is a deep agent?">
-    A deep agent is an agent pattern that combines explicit planning, long-lived
-    instructions, a virtual file system, and the ability to call tools and delegate to
-    sub-agents. The deepagents library implements this pattern on top of LangGraph, so a
-    deep agent is a compiled graph you can invoke or stream.
-  </article>
-
-  <article id="rag" title="What is retrieval-augmented generation?">
-    Retrieval-augmented generation (RAG) improves a language model's answers by first
-    retrieving relevant passages from an external knowledge base and then conditioning
-    the model on those passages. A typical pipeline parses source documents, splits them
-    into chunks, embeds the chunks into vectors, and stores them in a vector database
-    such as Qdrant. At query time the question is embedded and the most similar chunks
-    are retrieved and passed to the model.
-  </article>
-
-  <article id="fastembed" title="What is FastEmbed?">
-    FastEmbed is a lightweight, fast embedding library maintained by the Qdrant team. It
-    runs embedding models locally on CPU using ONNX, so it needs no API key. The model
-    BAAI/bge-small-en-v1.5 produces 384-dimensional vectors and is a good default for
-    English text.
-  </article>
-</knowledge_base>
+<?xml version="1.0" encoding="UTF-8"?><boatRegistry xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="boatRegistry.xsd">
+    
+  <boats>
+        
+    <boat id="B201">
+            
+      <name>Northstar Voyager</name>
+            
+      <type>MotorSailor</type>
+            
+      <lengthMeters>31.8</lengthMeters>
+            
+      <beamMeters>7.6</beamMeters>
+            
+      <draftMeters>3.9</draftMeters>
+            
+      <yearBuilt>2014</yearBuilt>
+            
+      <homePort>Aurora Harbor</homePort>
+            
+      <registrationNumber>REG-A48217</registrationNumber>
+            
+      <owner>
+                
+        <firstName>Alya</firstName>
+                
+        <lastName>Moreno</lastName>
+                
+        <contactPhone>+1-555-0142</contactPhone>
+                
+        <email>alya.moreno@example.test</email>
+              
+      </owner>
+            
+      <engine>
+                
+        <manufacturer>BlueWake</manufacturer>
+                
+        <model>BW-210</model>
+                
+        <horsepower>390</horsepower>
+                
+        <fuelType>Diesel</fuelType>
+              
+      </engine>
+            
+      <sails>
+                
+        <main>Sail-M-21</main>
+                
+        <jib>Sail-J-13</jib>
+                
+        <spinnaker>Sail-S-07</spinnaker>
+              
+      </sails>
+            
+      <equipment>
+                
+        <gps>GPS-A9</gps>
+                
+        <radar>RAD-17</radar>
+                
+        <radio>VHF-R3</radio>
+              
+      </equipment>
+          
+    </boat>
+        
+    <boat id="B202">
+            
+      <name>Silver Current</name>
+            
+      <type>Catamaran</type>
+            
+      <lengthMeters>24.6</lengthMeters>
+            
+      <beamMeters>11.9</beamMeters>
+            
+      <draftMeters>2.1</draftMeters>
+            
+      <yearBuilt>2018</yearBuilt>
+            
+      <homePort>Windfall Quay</homePort>
+            
+      <registrationNumber>REG-B50933</registrationNumber>
+            
+      <owner>
+                
+        <firstName>Ronan</firstName>
+                
+        <lastName>Vale</lastName>
+                
+        <contactPhone>+1-555-0188</contactPhone>
+                
+        <email>ronan.vale@example.test</email>
+              
+      </owner>
+            
+      <engine>
+                
+        <manufacturer>SeaForge</manufacturer>
+                
+        <model>SF-300</model>
+                
+        <horsepower>355</horsepower>
+                
+        <fuelType>Hybrid</fuelType>
+              
+      </engine>
+            
+      <sails>
+                
+        <main>Sail-M-18</main>
+                
+        <jib>Sail-J-10</jib>
+                
+        <spinnaker>Sail-S-11</spinnaker>
+              
+      </sails>
+            
+      <equipment>
+                
+        <gps>GPS-B4</gps>
+                
+        <radar>RAD-19</radar>
+                
+        <radio>VHF-R8</radio>
+              
+      </equipment>
+          
+    </boat>
+        
+    <boat id="B203">
+            
+      <name>Coral Lantern</name>
+            
+      <type>Cruiser</type>
+            
+      <lengthMeters>18.4</lengthMeters>
+            
+      <beamMeters>5.2</beamMeters>
+            
+      <draftMeters>2.4</draftMeters>
+            
+      <yearBuilt>2020</yearBuilt>
+            
+      <homePort>Southhaven Dock</homePort>
+            
+      <registrationNumber>REG-C64120</registrationNumber>
+            
+      <owner>
+                
+        <firstName>Elise</firstName>
+                
+        <lastName>Quinn</lastName>
+                
+        <contactPhone>+1-555-0226</contactPhone>
+                
+        <email>elise.quinn@example.test</email>
+              
+      </owner>
+            
+      <engine>
+                
+        <manufacturer>HarborLine</manufacturer>
+                
+        <model>HL-160</model>
+                
+        <horsepower>240</horsepower>
+                
+        <fuelType>Diesel</fuelType>
+              
+      </engine>
+            
+      <sails>
+                
+        <main>Sail-M-09</main>
+                
+        <jib>Sail-J-05</jib>
+                
+        <spinnaker>Sail-S-04</spinnaker>
+              
+      </sails>
+            
+      <equipment>
+                
+        <gps>GPS-C7</gps>
+                
+        <radar>RAD-22</radar>
+                
+        <radio>VHF-R1</radio>
+              
+      </equipment>
+          
+    </boat>
+        
+    <boat id="B204">
+            
+      <name>Mariner Echo</name>
+            
+      <type>Sloop</type>
+            
+      <lengthMeters>13.7</lengthMeters>
+            
+      <beamMeters>4.1</beamMeters>
+            
+      <draftMeters>1.8</draftMeters>
+            
+      <yearBuilt>2012</yearBuilt>
+            
+      <homePort>Granite Marina</homePort>
+            
+      <registrationNumber>REG-D77451</registrationNumber>
+            
+      <owner>
+                
+        <firstName>Jonas</firstName>
+                
+        <lastName>Frost</lastName>
+                
+        <contactPhone>+1-555-0334</contactPhone>
+                
+        <email>jonas.frost@example.test</email>
+              
+      </owner>
+            
+      <engine>
+                
+        <manufacturer>NorthStar Marine</manufacturer>
+                
+        <model>NS-90</model>
+                
+        <horsepower>120</horsepower>
+                
+        <fuelType>Gasoline</fuelType>
+              
+      </engine>
+            
+      <sails>
+                
+        <main>Sail-M-06</main>
+                
+        <jib>Sail-J-03</jib>
+                
+        <spinnaker>Sail-S-02</spinnaker>
+              
+      </sails>
+            
+      <equipment>
+                
+        <gps>GPS-D2</gps>
+                
+        <radar>RAD-08</radar>
+                
+        <radio>VHF-R5</radio>
+              
+      </equipment>
+          
+    </boat>
+        
+    <boat id="B205">
+            
+      <name>Azure Compass</name>
+            
+      <type>Trimaran</type>
+            
+      <lengthMeters>28.9</lengthMeters>
+            
+      <beamMeters>9.3</beamMeters>
+            
+      <draftMeters>2.7</draftMeters>
+            
+      <yearBuilt>2017</yearBuilt>
+            
+      <homePort>Lumen Anchorage</homePort>
+            
+      <registrationNumber>REG-E83006</registrationNumber>
+            
+      <owner>
+                
+        <firstName>Maris</firstName>
+                
+        <lastName>Bell</lastName>
+                
+        <contactPhone>+1-555-0411</contactPhone>
+                
+        <email>maris.bell@example.test</email>
+              
+      </owner>
+            
+      <engine>
+                
+        <manufacturer>WaveCrest</manufacturer>
+                
+        <model>WC-260</model>
+                
+        <horsepower>280</horsepower>
+                
+        <fuelType>Diesel</fuelType>
+              
+      </engine>
+            
+      <sails>
+                
+        <main>Sail-M-14</main>
+                
+        <jib>Sail-J-09</jib>
+                
+        <spinnaker>Sail-S-12</spinnaker>
+              
+      </sails>
+            
+      <equipment>
+                
+        <gps>GPS-E6</gps>
+                
+        <radar>RAD-14</radar>
+                
+        <radio>VHF-R6</radio>
+              
+      </equipment>
+          
+    </boat>
+        
+    <boat id="B206">
+            
+      <name>Drift Meridian</name>
+            
+      <type>Yacht</type>
+            
+      <lengthMeters>35.2</lengthMeters>
+            
+      <beamMeters>8.8</beamMeters>
+            
+      <draftMeters>4.4</draftMeters>
+            
+      <yearBuilt>2021</yearBuilt>
+            
+      <homePort>Tidegate Bay</homePort>
+            
+      <registrationNumber>REG-F90184</registrationNumber>
+            
+      <owner>
+                
+        <firstName>Seren</firstName>
+                
+        <lastName>Locke</lastName>
+                
+        <contactPhone>+1-555-0499</contactPhone>
+                
+        <email>seren.locke@example.test</email>
+              
+      </owner>
+            
+      <engine>
+                
+        <manufacturer>HarborTech</manufacturer>
+                
+        <model>HT-450</model>
+                
+        <horsepower>520</horsepower>
+                
+        <fuelType>Diesel</fuelType>
+              
+      </engine>
+            
+      <sails>
+                
+        <main>Sail-M-24</main>
+                
+        <jib>Sail-J-15</jib>
+                
+        <spinnaker>Sail-S-16</spinnaker>
+              
+      </sails>
+            
+      <equipment>
+                
+        <gps>GPS-F1</gps>
+                
+        <radar>RAD-27</radar>
+                
+        <radio>VHF-R2</radio>
+              
+      </equipment>
+          
+    </boat>
+        
+    <boat id="B207">
+            
+      <name>Harbor Whisper</name>
+            
+      <type>Cutter</type>
+            
+      <lengthMeters>21.3</lengthMeters>
+            
+      <beamMeters>6.0</beamMeters>
+            
+      <draftMeters>2.9</draftMeters>
+            
+      <yearBuilt>2016</yearBuilt>
+            
+      <homePort>Reefpoint Quay</homePort>
+            
+      <registrationNumber>REG-G15572</registrationNumber>
+            
+      <owner>
+                
+        <firstName>Tessa</firstName>
+                
+        <lastName>Wren</lastName>
+                
+        <contactPhone>+1-555-0570</contactPhone>
+                
+        <email>tessa.wren@example.test</email>
+              
+      </owner>
+            
+      <engine>
+                
+        <manufacturer>Bluewake</manufacturer>
+                
+        <model>BW-180</model>
+                
+        <horsepower>210</horsepower>
+                
+        <fuelType>Hybrid</fuelType>
+              
+      </engine>
+            
+      <sails>
+                
+        <main>Sail-M-11</main>
+                
+        <jib>Sail-J-07</jib>
+                
+        <spinnaker>Sail-S-08</spinnaker>
+              
+      </sails>
+            
+      <equipment>
+                
+        <gps>GPS-G8</gps>
+                
+        <radar>RAD-11</radar>
+                
+        <radio>VHF-R9</radio>
+              
+      </equipment>
+          
+    </boat>
+        
+    <boat id="B208">
+            
+      <name>Celestial Harbor</name>
+            
+      <type>Ketch</type>
+            
+      <lengthMeters>26.7</lengthMeters>
+            
+      <beamMeters>7.1</beamMeters>
+            
+      <draftMeters>3.2</draftMeters>
+            
+      <yearBuilt>2013</yearBuilt>
+            
+      <homePort>Northbreak Port</homePort>
+            
+      <registrationNumber>REG-H22019</registrationNumber>
+            
+      <owner>
+                
+        <firstName>Orin</firstName>
+                
+        <lastName>Lake</lastName>
+                
+        <contactPhone>+1-555-0614</contactPhone>
+                
+        <email>orin.lake@example.test</email>
+              
+      </owner>
+            
+      <engine>
+                
+        <manufacturer>SeaForge</manufacturer>
+                
+        <model>SF-240</model>
+                
+        <horsepower>305</horsepower>
+                
+        <fuelType>Diesel</fuelType>
+              
+      </engine>
+            
+      <sails>
+                
+        <main>Sail-M-16</main>
+                
+        <jib>Sail-J-12</jib>
+                
+        <spinnaker>Sail-S-10</spinnaker>
+              
+      </sails>
+            
+      <equipment>
+                
+        <gps>GPS-H3</gps>
+                
+        <radar>RAD-16</radar>
+                
+        <radio>VHF-R7</radio>
+              
+      </equipment>
+          
+    </boat>
+        
+    <boat id="B209">
+            
+      <name>New Horizon</name>
+            
+      <type>Yacht</type>
+            
+      <lengthMeters>15.0</lengthMeters>
+            
+      <beamMeters>4.0</beamMeters>
+            
+      <draftMeters>1.5</draftMeters>
+            
+      <yearBuilt>2025</yearBuilt>
+            
+      <homePort>Test Port</homePort>
+            
+      <registrationNumber>REG-Z00001</registrationNumber>
+            
+      <owner>
+                
+        <firstName>Nicky</firstName>
+                
+        <lastName>DUKE</lastName>
+                
+        <contactPhone>+1-555-0000</contactPhone>
+                
+        <email>john.doe@example.test</email>
+              
+      </owner>
+            
+      <engine/>
+            
+      <sails/>
+            
+      <equipment/>
+          
+    </boat>
+        
+    <boat id="B210">
+            
+      <name>New Horizon</name>
+            
+      <type>Yacht</type>
+            
+      <lengthMeters>15.0</lengthMeters>
+            
+      <beamMeters>4.0</beamMeters>
+            
+      <draftMeters>1.5</draftMeters>
+            
+      <yearBuilt>2025</yearBuilt>
+            
+      <homePort>Test Port</homePort>
+            
+      <registrationNumber>REG-Z00001</registrationNumber>
+            
+      <owner>
+                
+        <firstName>John</firstName>
+                
+        <lastName>Doe</lastName>
+                
+        <contactPhone>+1-555-0000</contactPhone>
+                
+        <email>john.doe@example.test</email>
+              
+      </owner>
+            
+      <engine/>
+            
+      <sails/>
+            
+      <equipment/>
+          
+    </boat>
+        
+    <boat id="AF787">
+            
+      <name>EdF2026</name>
+            
+      <owner>
+                
+        <firstName>Kylian</firstName>
+                
+        <lastName>Mbappé</lastName>
+                
+        <contactPhone>0690142425</contactPhone>
+                
+        <email>mbappe.dictator@gmail.com</email>
+              
+      </owner>
+            
+      <engine/>
+            
+      <sails/>
+            
+      <equipment/>
+          
+    </boat>
+        
+    <boat id="P001">
+            
+      <name>Pirate</name>
+            
+      <owner>
+                
+        <firstName>Eiffel</firstName>
+                
+        <lastName>Sparrow</lastName>
+              
+      </owner>
+            
+      <engine/>
+            
+      <sails/>
+            
+      <equipment/>
+          
+    </boat>
+        
+    <boat id="B1618">
+            
+      <name>Pirate</name>
+            
+      <owner>
+                
+        <firstName>Jack</firstName>
+                
+        <lastName>Sparrow</lastName>
+              
+      </owner>
+            
+      <engine/>
+            
+      <sails/>
+            
+      <equipment/>
+          
+    </boat>
+        
+    <boat id="PAR15">
+            
+      <name>Paris</name>
+            
+      <owner/>
+            
+      <engine/>
+            
+      <sails/>
+            
+      <equipment/>
+          
+    </boat>
+        
+    <boat id="MEL001">
+            
+      <name>Melbourne</name>
+            
+      <owner/>
+            
+      <engine/>
+            
+      <sails/>
+            
+      <equipment/>
+          
+    </boat>
+      
+  </boats>
+    
+  <port code="PA">
+        
+    <name>Aurora Harbor</name>
+        
+    <country>Fictionland</country>
+        
+    <latitude>44.812N</latitude>
+        
+    <longitude>10.466E</longitude>
+        
+    <maxLengthMeters>60</maxLengthMeters>
+        
+    <facilities>
+            
+      <fuel>Diesel, LNG</fuel>
+            
+      <repair>Full-service</repair>
+            
+      <marina>Yes</marina>
+          
+    </facilities>
+      
+  </port>
+    
+  <port code="PB">
+        
+    <name>Windfall Quay</name>
+        
+    <country>Fictionland</country>
+        
+    <latitude>45.102N</latitude>
+        
+    <longitude>10.981E</longitude>
+        
+    <maxLengthMeters>45</maxLengthMeters>
+        
+    <facilities>
+            
+      <fuel>Diesel</fuel>
+            
+      <repair>Limited</repair>
+            
+      <marina>Yes</marina>
+          
+    </facilities>
+      
+  </port>
+    
+  <port code="PC">
+        
+    <name>Southhaven Dock</name>
+        
+    <country>Fictionland</country>
+        
+    <latitude>44.677N</latitude>
+        
+    <longitude>11.203E</longitude>
+        
+    <maxLengthMeters>38</maxLengthMeters>
+        
+    <facilities>
+            
+      <fuel>Diesel, Petrol</fuel>
+            
+      <repair>Dry dock</repair>
+            
+      <marina>No</marina>
+          
+    </facilities>
+      
+  </port>
+    
+  <port code="PD">
+        
+    <name>Granite Marina</name>
+        
+    <country>Fictionland</country>
+        
+    <latitude>45.330N</latitude>
+        
+    <longitude>11.544E</longitude>
+        
+    <maxLengthMeters>30</maxLengthMeters>
+        
+    <facilities>
+            
+      <fuel>Diesel</fuel>
+            
+      <repair>Limited</repair>
+            
+      <marina>Yes</marina>
+          
+    </facilities>
+      
+  </port>
+    
+  <port code="PE">
+        
+    <name>Lumen Anchorage</name>
+        
+    <country>Fictionland</country>
+        
+    <latitude>45.901N</latitude>
+        
+    <longitude>12.010E</longitude>
+        
+    <maxLengthMeters>70</maxLengthMeters>
+        
+    <facilities>
+            
+      <fuel>Diesel, Electric charging</fuel>
+            
+      <repair>Full-service</repair>
+            
+      <marina>Yes</marina>
+          
+    </facilities>
+      
+  </port>
+    
+  <port code="PF">
+        
+    <name>Tidegate Bay</name>
+        
+    <country>Fictionland</country>
+        
+    <latitude>46.218N</latitude>
+        
+    <longitude>12.427E</longitude>
+        
+    <maxLengthMeters>55</maxLengthMeters>
+        
+    <facilities>
+            
+      <fuel>Diesel</fuel>
+            
+      <repair>Dry dock</repair>
+            
+      <marina>No</marina>
+          
+    </facilities>
+      
+  </port>
+    
+  <port code="PG">
+        
+    <name>Reefpoint Quay</name>
+        
+    <country>Fictionland</country>
+        
+    <latitude>46.481N</latitude>
+        
+    <longitude>12.713E</longitude>
+        
+    <maxLengthMeters>42</maxLengthMeters>
+        
+    <facilities>
+            
+      <fuel>Diesel, LPG</fuel>
+            
+      <repair>Limited</repair>
+            
+      <marina>Yes</marina>
+          
+    </facilities>
+      
+  </port>
+    
+  <port code="PH">
+        
+    <name>Northbreak Port</name>
+        
+    <country>Fictionland</country>
+        
+    <latitude>46.905N</latitude>
+        
+    <longitude>13.124E</longitude>
+        
+    <maxLengthMeters>48</maxLengthMeters>
+        
+    <facilities>
+            
+      <fuel>Diesel</fuel>
+            
+      <repair>Full-service</repair>
+            
+      <marina>No</marina>
+          
+    </facilities>
+      
+  </port>
+    
+  <regulation id="R101">
+        
+    <title>Maximum Engine Power per Length</title>
+        
+    <description>Engines may not exceed 14 kW per meter of vessel length.</description>
+        
+    <applicableTypes>MotorSailor, Catamaran, Yacht</applicableTypes>
+        
+    <effectiveDate>2022-01-01</effectiveDate>
+        
+    <penalty>Fine up to 5,000 USD</penalty>
+      
+  </regulation>
+    
+  <regulation id="R102">
+        
+    <title>Mandatory Life-Raft Capacity</title>
+        
+    <description>Each boat must carry a life-raft for at least 1.4 persons per meter of length.</description>
+        
+    <applicableTypes>All</applicableTypes>
+        
+    <effectiveDate>2021-06-15</effectiveDate>
+        
+    <penalty>Detention until compliance</penalty>
+      
+  </regulation>
+    
+  <regulation id="R103">
+        
+    <title>Night Navigation Light Standard</title>
+        
+    <description>Vessels operating at night must display approved navigation lights visible for 2 nautical miles.</description>
+        
+    <applicableTypes>All</applicableTypes>
+        
+    <effectiveDate>2023-03-10</effectiveDate>
+        
+    <penalty>Warning and mandatory inspection</penalty>
+      
+  </regulation>
+    
+  <regulation id="R104">
+        
+    <title>Harbor Speed Limit</title>
+        
+    <description>Boats inside regulated harbor zones must not exceed 6 knots.</description>
+        
+    <applicableTypes>All</applicableTypes>
+        
+    <effectiveDate>2020-09-01</effectiveDate>
+        
+    <penalty>Fine up to 2,000 USD</penalty>
+      
+  </regulation>
+    
+  <regulation id="R105">
+        
+    <title>Wastewater Discharge Restriction</title>
+        
+    <description>Discharge of untreated wastewater is prohibited within 5 nautical miles of any port.</description>
+        
+    <applicableTypes>All</applicableTypes>
+        
+    <effectiveDate>2022-08-20</effectiveDate>
+        
+    <penalty>Environmental surcharge and detention</penalty>
+      
+  </regulation>
+    
+  <regulation id="R106">
+        
+    <title>Navigation Electronics Redundancy</title>
+        
+    <description>Vessels over 20 meters must carry at least two independent navigation systems.</description>
+        
+    <applicableTypes>MotorSailor, Catamaran, Cruiser, Yacht, Trimaran, Ketch</applicableTypes>
+        
+    <effectiveDate>2024-02-12</effectiveDate>
+        
+    <penalty>Mandatory retrofit order</penalty>
+      
+  </regulation>
+    
+  <regulation id="R107">
+        
+    <title>Storm Readiness Kit</title>
+        
+    <description>Every vessel must carry an approved storm readiness kit during the monsoon season.</description>
+        
+    <applicableTypes>All</applicableTypes>
+        
+    <effectiveDate>2023-11-01</effectiveDate>
+        
+    <penalty>Fine and restricted departure clearance</penalty>
+      
+  </regulation>
+    
+  <regulation id="R108">
+        
+    <title>Mandatory Crew Safety Briefing</title>
+        
+    <description>Before departure, the captain must complete a documented safety briefing for all crew.</description>
+        
+    <applicableTypes>All</applicableTypes>
+        
+    <effectiveDate>2021-01-05</effectiveDate>
+        
+    <penalty>Administrative fine</penalty>
+      
+  </regulation>
+    
+  <incidentLog id="I201">
+        
+    <date>2023-07-04</date>
+        
+    <boatRef>B201</boatRef>
+        
+    <portRef>PA</portRef>
+        
+    <type>Grounding</type>
+        
+    <severity>Medium</severity>
+        
+    <description>Minor grounding on a sandbar during approach; no injuries reported.</description>
+        
+    <actionsTaken>
+            
+      <refloat>Successful</refloat>
+            
+      <inspection>Passed</inspection>
+          
+    </actionsTaken>
+      
+  </incidentLog>
+    
+  <incidentLog id="I202">
+        
+    <date>2023-08-12</date>
+        
+    <boatRef>B202</boatRef>
+        
+    <portRef>PB</portRef>
+        
+    <type>Engine Failure</type>
+        
+    <severity>High</severity>
+        
+    <description>Loss of main engine power during a night transit after a cooling-system fault.</description>
+        
+    <actionsTaken>
+            
+      <towed>To nearest harbor</towed>
+            
+      <repair>Cooling system replaced</repair>
+          
+    </actionsTaken>
+      
+  </incidentLog>
+    
+  <incidentLog id="I203">
+        
+    <date>2024-01-19</date>
+        
+    <boatRef>B203</boatRef>
+        
+    <portRef>PC</portRef>
+        
+    <type>Communication Loss</type>
+        
+    <severity>Low</severity>
+        
+    <description>Temporary radio outage caused by water ingress in the antenna housing.</description>
+        
+    <actionsTaken>
+            
+      <refloat>Not applicable</refloat>
+            
+      <inspection>Radio mast serviced</inspection>
+          
+    </actionsTaken>
+      
+  </incidentLog>
+    
+  <incidentLog id="I204">
+        
+    <date>2024-03-02</date>
+        
+    <boatRef>B204</boatRef>
+        
+    <portRef>PD</portRef>
+        
+    <type>Fuel Spill</type>
+        
+    <severity>Medium</severity>
+        
+    <description>A small fuel spill occurred while refueling at berth; containment was immediate.</description>
+        
+    <actionsTaken>
+            
+      <towed>Not required</towed>
+            
+      <repair>Spill response completed</repair>
+          
+    </actionsTaken>
+      
+  </incidentLog>
+    
+  <incidentLog id="I205">
+        
+    <date>2024-05-27</date>
+        
+    <boatRef>B205</boatRef>
+        
+    <portRef>PE</portRef>
+        
+    <type>Navigation Error</type>
+        
+    <severity>Medium</severity>
+        
+    <description>Incorrect chart reference led to a near miss with a buoy line.</description>
+        
+    <actionsTaken>
+            
+      <refloat>Successful</refloat>
+            
+      <inspection>Navigation logs reviewed</inspection>
+          
+    </actionsTaken>
+      
+  </incidentLog>
+    
+  <incidentLog id="I206">
+        
+    <date>2024-06-14</date>
+        
+    <boatRef>B206</boatRef>
+        
+    <portRef>PF</portRef>
+        
+    <type>Anchor Drag</type>
+        
+    <severity>Low</severity>
+        
+    <description>Anchor slipped during an unexpected wind shift while moored offshore.</description>
+        
+    <actionsTaken>
+            
+      <refloat>Successful</refloat>
+            
+      <inspection>Anchor gear replaced</inspection>
+          
+    </actionsTaken>
+      
+  </incidentLog>
+    
+  <incidentLog id="I207">
+        
+    <date>2024-08-09</date>
+        
+    <boatRef>B207</boatRef>
+        
+    <portRef>PG</portRef>
+        
+    <type>Medical Emergency</type>
+        
+    <severity>High</severity>
+        
+    <description>A crew member required urgent evacuation after dehydration symptoms intensified.</description>
+        
+    <actionsTaken>
+            
+      <towed>To medical berth</towed>
+            
+      <repair>Evacuation completed</repair>
+          
+    </actionsTaken>
+      
+  </incidentLog>
+    
+  <incidentLog id="I208">
+        
+    <date>2024-09-21</date>
+        
+    <boatRef>B208</boatRef>
+        
+    <portRef>PH</portRef>
+        
+    <type>Sail Tear</type>
+        
+    <severity>Low</severity>
+        
+    <description>Jib tear occurred in strong crosswinds; vessel returned under engine power.</description>
+        
+    <actionsTaken>
+            
+      <refloat>Successful</refloat>
+            
+      <inspection>Sail repaired at dock</inspection>
+          
+    </actionsTaken>
+      
+  </incidentLog>
+    
+  <inspection id="INS201">
+        
+    <boatRef>B201</boatRef>
+        
+    <date>2024-03-20</date>
+        
+    <inspector>Captain Aurora Finch</inspector>
+        
+    <result>Pass</result>
+        
+    <notes>All safety equipment was up to date and properly stowed.</notes>
+      
+  </inspection>
+    
+  <inspection id="INS202">
+        
+    <boatRef>B202</boatRef>
+        
+    <date>2024-04-05</date>
+        
+    <inspector>Chief Surveyor Leo Hart</inspector>
+        
+    <result>Conditional Pass</result>
+        
+    <notes>Minor oil leak detected and repaired within 48 hours.</notes>
+      
+  </inspection>
+    
+  <inspection id="INS203">
+        
+    <boatRef>B203</boatRef>
+        
+    <date>2024-05-11</date>
+        
+    <inspector>Inspector Nia Sol</inspector>
+        
+    <result>Pass</result>
+        
+    <notes>Radio and navigation equipment tested successfully.</notes>
+      
+  </inspection>
+    
+  <inspection id="INS204">
+        
+    <boatRef>B204</boatRef>
+        
+    <date>2024-06-08</date>
+        
+    <inspector>Harbor Auditor Malik Sato</inspector>
+        
+    <result>Pass</result>
+        
+    <notes>Fuel handling procedures met the required standard.</notes>
+      
+  </inspection>
+    
+  <inspection id="INS205">
+        
+    <boatRef>B205</boatRef>
+        
+    <date>2024-07-03</date>
+        
+    <inspector>Senior Inspector Elena Cross</inspector>
+        
+    <result>Conditional Pass</result>
+        
+    <notes>Backup navigation chart set was incomplete but corrected after the audit.</notes>
+      
+  </inspection>
+    
+  <inspection id="INS206">
+        
+    <boatRef>B206</boatRef>
+        
+    <date>2024-08-16</date>
+        
+    <inspector>Surveyor Tomas Hale</inspector>
+        
+    <result>Pass</result>
+        
+    <notes>Hull integrity and emergency lighting passed all checks.</notes>
+      
+  </inspection>
+    
+  <inspection id="INS207">
+        
+    <boatRef>B207</boatRef>
+        
+    <date>2024-09-09</date>
+        
+    <inspector>Inspector Mara Reed</inspector>
+        
+    <result>Pass</result>
+        
+    <notes>Crew logs and medical kit inventory were complete.</notes>
+      
+  </inspection>
+    
+  <inspection id="INS208">
+        
+    <boatRef>B208</boatRef>
+        
+    <date>2024-10-27</date>
+        
+    <inspector>Chief Surveyor Owen Vale</inspector>
+        
+    <result>Conditional Pass</result>
+        
+    <notes>One sail replacement was scheduled after the inspection.</notes>
+      
+  </inspection>
+  
+</boatRegistry>

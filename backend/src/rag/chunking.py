@@ -20,6 +20,7 @@ class Chunk:
     record_id: str
     tag: str
     chunk_index: int
+    metadata: dict[str, str]
 
 
 def chunk_text(text: str, chunk_size: int, overlap: int) -> list[str]:
@@ -79,6 +80,7 @@ def chunk_records(records: list[Record], chunk_size: int, overlap: int) -> list[
                     record_id=record.record_id,
                     tag=record.tag,
                     chunk_index=index,
+                    metadata=record.metadata,
                 )
             )
     return chunks

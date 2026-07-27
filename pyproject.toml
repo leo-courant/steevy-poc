@@ -12,6 +12,11 @@ dependencies = [
     "qdrant-client>=1.18.0",
 ]
 
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
