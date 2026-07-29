@@ -12,3 +12,6 @@ qdrant_storage/
 # Chainlit
 .chainlit/
 .files/
+
+# SQL
+data/sql/

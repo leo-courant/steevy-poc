@@ -4,7 +4,6 @@ Expose every Groovy script as LangChain tools and register them so the
 agent can call them like other tools. The tools accept a JSON string with
 options (key/value) which are converted to CLI args for the Groovy scripts.
 """
-
 from __future__ import annotations
 
 import json
@@ -16,8 +15,8 @@ from typing import Dict
 
 from langchain_core.tools import tool
 
-from agent.tools.registry import register
-from agent.tools.reindex_tool import reindex_kb
+# from agent.tools.registry import register
+# from agent.tools.reindex_tool import reindex_kb
 
 
 class MissingGroovyFieldsError(ValueError):
@@ -44,10 +43,9 @@ _REQUIRED_GROOVY_OPTION_RE = re.compile(
     re.MULTILINE,
 )
 
-
 def _repo_root() -> Path:
     return Path(__file__).resolve().parents[4]
-
+print(_repo_root())
 
 @lru_cache(maxsize=None)
 def _required_groovy_fields(script_path: str) -> tuple[str, ...]:
@@ -57,6 +55,7 @@ def _required_groovy_fields(script_path: str) -> tuple[str, ...]:
 
 
 def _is_missing_value(value: object) -> bool:
+    """définit ce que "champ manquant" signifie."""
     if value is None:
         return True
     if isinstance(value, str) and value.strip() == '':
@@ -65,6 +64,7 @@ def _is_missing_value(value: object) -> bool:
 
 
 def _missing_fields_message(tool_name: str, missing_fields: tuple[str, ...]) -> str:
+    """construit le message d'erreur."""
     details = '\n'.join(f'- {field_name}' for field_name in missing_fields)
     return (
         f"Groovy tool '{tool_name}' is missing required field(s): "
@@ -74,12 +74,14 @@ def _missing_fields_message(tool_name: str, missing_fields: tuple[str, ...]) -> 
 
 
 def _apply_groovy_defaults(opts: Dict[str, object]) -> None:
+    """injecte les valeurs par défaut."""
     for field_name, default_value in _GROOVY_DEFAULT_VALUES.items():
         if _is_missing_value(opts.get(field_name)):
             opts[field_name] = default_value
 
 
 def _validate_groovy_opts(tool_name: str, script_path: str, opts: Dict[str, object]) -> None:
+    """compare les options reçues avec les champs required: true du script Groovy et lève MissingGroovyFieldsError si nécessaire."""
     missing_fields = [
         field_name
         for field_name in _required_groovy_fields(script_path)
@@ -124,71 +126,92 @@ def _call_groovy(tool_name: str, script_path: str, opts: Dict[str, object]) -> s
     return res.stdout.strip()
 
 
-@register
-@tool
-def add_boat(opts_json: str) -> str:
-    """Add a boat using the Groovy addBoat.groovy script.
+# @register
+# @tool
+# def add_boat(opts_json: str) -> str:
+#     """Add a boat using the Groovy addBoat.groovy script.
 
-    `opts_json` must be a JSON object (string) with the same option names used
-    by the Groovy script (for example: {"xml":"data/rag/sample.xml","id":"B210","name":"MyBoat"}).
-    Returns the Groovy stdout on success.
-    """
-    opts = json.loads(opts_json)
-    out = _call_groovy('add_boat', 'backend/src/agent/tools/addBoat.groovy', opts)
+#     `opts_json` must be a JSON object (string) with the same option names used
+#     by the Groovy script (for example: {"xml":"data/rag/sample.xml","id":"B210","name":"MyBoat"}).
+#     Returns the Groovy stdout on success.
+#     """
+#     opts = json.loads(opts_json)
+#     out = _call_groovy('add_boat', 'backend/src/agent/tools/addBoat.groovy', opts)
 
-    # Trigger background reindex to keep KB in sync
-    try:
-        status = reindex_kb('{"background": true}')
-        out = out + f"\n{status}"
-    except Exception as e:
-        out = out + f"\nWarning: failed to trigger reindex: {e}"
+#     # Trigger background reindex to keep KB in sync
+#     try:
+#         status = reindex_kb('{"background": true}')
+#         out = out + f"\n{status}"
+#     except Exception as e:
+#         out = out + f"\nWarning: failed to trigger reindex: {e}"
 
-    return out
-
-
-@register
-@tool
-def update_boat(opts_json: str) -> str:
-    """Update a boat using the Groovy updateBoat.groovy script.
-
-    `opts_json` must be a JSON object (string) with `id` and any optional
-    fields to update (same option names as the Groovy script). Example:
-    '{"xml":"data/rag/sample.xml","id":"B209","ownerFirst":"Nicky"}'.
-    Returns the Groovy stdout on success.
-    """
-    opts = json.loads(opts_json)
-    out = _call_groovy('update_boat', 'backend/src/agent/tools/updateBoat.groovy', opts)
-
-    # Trigger background reindex to keep KB in sync
-    try:
-        status = reindex_kb('{"background": true}')
-        out = out + f"\n{status}"
-    except Exception as e:
-        out = out + f"\nWarning: failed to trigger reindex: {e}"
-
-    return out
+#     return out
 
 
-@register
-@tool
-def delete_boat(opts_json: str) -> str:
-    """Delete a boat using the Groovy deleteBoat.groovy script.
+# @register
+# @tool
+# def update_boat(opts_json: str) -> str:
+#     """Update a boat using the Groovy updateBoat.groovy script.
 
-    `opts_json` must be a JSON object (string) containing the boat `id` to
-    delete. `name` is optional; when provided, it must match the boat's name
-    as well as its id or no boat is deleted. The default XML file is used when
-    `xml` is omitted. Example:
-    '{"xml":"data/rag/sample.xml","id":"B209","name":"Sea Star"}'.
-    Returns the Groovy stdout on success.
-    """
-    opts = json.loads(opts_json)
-    out = _call_groovy('delete_boat', 'backend/src/agent/tools/deleteBoat.groovy', opts)
+#     `opts_json` must be a JSON object (string) with `id` and any optional
+#     fields to update (same option names as the Groovy script). Example:
+#     '{"xml":"data/rag/sample.xml","id":"B209","ownerFirst":"Nicky"}'.
+#     Returns the Groovy stdout on success.
+#     """
+#     opts = json.loads(opts_json)
+#     out = _call_groovy('update_boat', 'backend/src/agent/tools/updateBoat.groovy', opts)
 
-    # Trigger background reindex to keep KB in sync.
-    try:
-        status = reindex_kb('{"background": true}')
-        out = out + f"\n{status}"
-    except Exception as e:
-        out = out + f"\nWarning: failed to trigger reindex: {e}"
+#     # Trigger background reindex to keep KB in sync
+#     try:
+#         status = reindex_kb('{"background": true}')
+#         out = out + f"\n{status}"
+#     except Exception as e:
+#         out = out + f"\nWarning: failed to trigger reindex: {e}"
 
-    return out
+#     return out
+
+
+# @register
+# @tool
+# def delete_boat(opts_json: str) -> str:
+#     """Delete a boat using the Groovy deleteBoat.groovy script.
+
+#     `opts_json` must be a JSON object (string) containing the boat `id` to
+#     delete. `name` is optional; when provided, it must match the boat's name
+#     as well as its id or no boat is deleted. The default XML file is used when
+#     `xml` is omitted. Example:
+#     '{"xml":"data/rag/sample.xml","id":"B209","name":"Sea Star"}'.
+#     Returns the Groovy stdout on success.
+#     """
+#     opts = json.loads(opts_json)
+#     out = _call_groovy('delete_boat', 'backend/src/agent/tools/deleteBoat.groovy', opts)
+
+#     # Trigger background reindex to keep KB in sync.
+#     try:
+#         status = reindex_kb('{"background": true}')
+#         out = out + f"\n{status}"
+#     except Exception as e:
+#         out = out + f"\nWarning: failed to trigger reindex: {e}"
+
+#     return out
+
+if __name__ == "__main__":
+    script_path = r"backend\src\agent\tools\updateBoat.groovy"
+
+    print("=" * 80)
+    print("TEST _required_groovy_fields")
+    print("=" * 80)
+    print(f"Script : {script_path}")
+    print()
+
+    fields = _required_groovy_fields(script_path)
+
+    print(f"Nombre de champs obligatoires : {len(fields)}")
+    print()
+
+    for i, field in enumerate(fields, start=1):
+        print(f"{i}. {field}")
+
+    print()
+    print("Tuple retourné :")
+    print(fields)

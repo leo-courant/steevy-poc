@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from rag.parsing import Record
+from parsing import Record
 
 
 @dataclass
@@ -17,7 +17,6 @@ class Chunk:
 
     text: str
     source_file: str
-    record_id: str
     tag: str
     chunk_index: int
     metadata: dict[str, str]
@@ -77,10 +76,88 @@ def chunk_records(records: list[Record], chunk_size: int, overlap: int) -> list[
                 Chunk(
                     text=piece,
                     source_file=record.source_file,
-                    record_id=record.record_id,
                     tag=record.tag,
                     chunk_index=index,
                     metadata=record.metadata,
                 )
             )
     return chunks
+
+
+if __name__ == "__main__":
+    from pathlib import Path
+
+    from parsing import parse_file
+
+    xml_path = Path(
+        r"data\rag\sample.xml"
+    )
+
+    print("=" * 80)
+    print("1. PARSING XML")
+    print("=" * 80)
+
+    records = parse_file(xml_path)
+
+    print(f"Nombre de records : {len(records)}\n")
+
+    # for i, record in enumerate(records, start=1):
+    #     print(f"RECORD #{i}")
+    #     print(f"tag         : {record.tag}")
+    #     print(f"source_file : {record.source_file}")
+    #     print(f"metadata    : {record.metadata}")
+    #     print("text :")
+    #     print(record.text)
+    #     print("-" * 80)
+
+    print("\n")
+    print("=" * 80)
+    print("2. TEST chunk_text()")
+    print("=" * 80)
+
+    if records:
+        sample_text = records[0].text
+
+        print("Texte original :")
+        print(sample_text)
+        print()
+
+        chunks = chunk_text(
+            text=sample_text,
+            chunk_size=800,
+            overlap=100,
+        )
+
+        print(f"Nombre de chunks : {len(chunks)}\n")
+
+        for i, chunk in enumerate(chunks):
+            print(f"CHUNK #{i}")
+            print(chunk)
+            print("-" * 40)
+
+    print("\n")
+    print("=" * 80)
+    print("3. TEST chunk_records()")
+    print("=" * 80)
+
+    chunks = chunk_records(
+        records=records,
+        chunk_size=800,
+        overlap=100,
+    )
+
+    print(f"Nombre total de chunks : {len(chunks)}\n")
+
+    for i, chunk in enumerate(chunks, start=1):
+        print(f"CHUNK #{i}")
+        print(f"source_file : {chunk.source_file}")
+        print(f"tag         : {chunk.tag}")
+        print(f"chunk_index : {chunk.chunk_index}")
+        print(f"metadata    : {chunk.metadata}")
+        print("text :")
+        print(chunk.text)
+        print("-" * 80)
+        if i==10:
+            break
+
+    print("\nFIN DES TESTS")

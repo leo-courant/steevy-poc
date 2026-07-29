@@ -40,7 +40,6 @@ async def on_chat_start() -> None:
         )
     ).send()
 
-
 @cl.on_message
 async def on_message(message: cl.Message) -> None:
     agent = cl.user_session.get("agent")

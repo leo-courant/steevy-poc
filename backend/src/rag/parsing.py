@@ -15,22 +15,19 @@ from pathlib import Path
 @dataclass
 class Record:
     """One logical unit extracted from an XML file."""
-
-    record_id: str
     tag: str
     text: str
     source_file: str
-    metadata: dict[str, str] = field(default_factory=dict)
+    metadata: dict[str, str] = field(default_factory=dict) # permet de crrer un dico par instance Record
 
 
-def _element_text(element: ET.Element, record_id: str) -> str:
+def _element_text(element: ET.Element) -> str:
     """Render an XML record as labelled text suitable for embedding.
 
     XML tag names and attributes convey important meaning.  Keeping them in the
-    text lets a semantic search distinguish values such as a boat reference
-    from an incident identifier, while preserving the complete leaf content.
+    text lets a semantic search distinguish values while preserving the complete leaf content.
     """
-    lines = [f"record_type: {element.tag}", f"record_id: {record_id}"]
+    lines = [f"record_type: {element.tag}"]
     if element.attrib:
         attributes = ", ".join(
             f"{name}: {value}" for name, value in element.attrib.items()
@@ -94,19 +91,12 @@ def parse_file(path: Path, record_tag: str | None = None) -> list[Record]:
     elements = _record_elements(root, record_tag)
 
     records: list[Record] = []
-    for index, element in enumerate(elements):
-        record_id = (
-            element.get("id")
-            or element.get("code")
-            or element.get("name")
-            or f"{element.tag}-{index}"
-        )
-        text = _element_text(element, record_id)
+    for _, element in enumerate(elements):
+        text = _element_text(element)
         if not text:
             continue
         records.append(
             Record(
-                record_id=record_id,
                 tag=element.tag,
                 text=text,
                 source_file=path.name,
@@ -122,3 +112,87 @@ def parse_dir(data_dir: Path, record_tag: str | None = None) -> list[Record]:
     for xml_path in sorted(data_dir.glob("*.xml")):
         records.extend(parse_file(xml_path, record_tag))
     return records
+
+
+if __name__ == "__main__":
+    from pathlib import Path
+    import xml.etree.ElementTree as ET
+
+    xml_path = Path(
+        r"data\rag\sample.xml"
+    )
+
+    print("=" * 80)
+    print("1. Chargement du XML")
+    print("=" * 80)
+
+    root = ET.parse(xml_path).getroot()
+    print(f"Root tag : {root.tag}")
+
+    print("\n")
+
+    print("=" * 80)
+    print("2. Test _record_elements()")
+    print("=" * 80)
+
+    elements = _record_elements(root, None)
+
+    print(f"Nombre d'éléments trouvés : {len(elements)}")
+
+    for i, element in enumerate(elements, start=1):
+        print(f"[{i}] tag={element.tag}")
+
+    print("\n")
+
+    if elements:
+        first_element = elements[0]
+
+        print("=" * 80)
+        print("3. Test _element_text() sur le premier élément")
+        print("=" * 80)
+
+        text = _element_text(first_element)
+        print(text)
+
+        print("\n")
+
+        print("=" * 80)
+        print("4. Test _element_fields() sur le premier élément")
+        print("=" * 80)
+
+        fields = _element_fields(first_element)
+
+        for key, value in fields.items():
+            print(f"{key} = {value}")
+
+        print("\n")
+
+    print("=" * 80)
+    print("5. Test parse_file()")
+    print("=" * 80)
+
+    records = parse_file(xml_path)
+
+    print(f"Nombre de records : {len(records)}")
+
+    for i, record in enumerate(records, start=1):
+        print("\n" + "-" * 80)
+        print(f"RECORD #{i}")
+        print("-" * 80)
+
+        print(f"tag         : {record.tag}")
+        print(f"source_file : {record.source_file}")
+
+        print("\nTEXT")
+        print(record.text)
+
+        print("\nMETADATA")
+        for key, value in record.metadata.items():
+            print(f"{key} = {value}")
+
+        break
+
+    print("\n")
+    print("=" * 80)
+    print("FIN DES TESTS")
+    print("=" * 80)

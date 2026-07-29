@@ -15,16 +15,16 @@ from rag.parsing import parse_dir
 from rag.store import QdrantStore
 
 
-def _lookup_values(record_id: str, fields: dict[str, str]) -> list[str]:
-    """Build case-insensitive exact-match values from a record payload."""
-    values = [record_id, *fields.values()]
-    return list(
-        dict.fromkeys(
-            lookup_value
-            for value in values
-            for lookup_value in (value, value.casefold())
-        )
-    )
+# def _lookup_values(fields: dict[str, str]) -> list[str]:
+#     """Build case-insensitive exact-match values from a record payload."""
+#     values = [*fields.values()]
+#     return list(
+#         dict.fromkeys(
+#             lookup_value
+#             for value in values
+#             for lookup_value in (value, value.casefold())
+#         )
+#     )
 
 
 def run_ingestion() -> int:
@@ -46,11 +46,9 @@ def run_ingestion() -> int:
         {
             "text": chunk.text,
             "source_file": chunk.source_file,
-            "record_id": chunk.record_id,
             "tag": chunk.tag,
             "chunk_index": chunk.chunk_index,
             "fields": chunk.metadata,
-            "lookup_values": _lookup_values(chunk.record_id, chunk.metadata),
         }
         for chunk in chunks
     ]
