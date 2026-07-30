@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from parsing import Record
+from rag.parsing import Record
 
 
 @dataclass
@@ -87,7 +87,7 @@ def chunk_records(records: list[Record], chunk_size: int, overlap: int) -> list[
 if __name__ == "__main__":
     from pathlib import Path
 
-    from parsing import parse_file
+    from rag.parsing import parse_file
 
     xml_path = Path(
         r"data\rag\sample.xml"

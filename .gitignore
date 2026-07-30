@@ -15,3 +15,4 @@ qdrant_storage/
 
 # SQL
 data/sql/
+data/static/genai.tatm.thales.crt
