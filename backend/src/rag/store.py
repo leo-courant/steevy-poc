@@ -8,10 +8,6 @@ from dataclasses import dataclass
 from qdrant_client import QdrantClient
 from qdrant_client.models import (
     Distance,
-    FieldCondition,
-    Filter,
-    MatchValue,
-    PayloadSchemaType,
     PointStruct,
     VectorParams,
 )
@@ -26,7 +22,6 @@ class SearchHit:
     score: float
     text: str
     source_file: str
-    record_id: str
     tag: str
     chunk_index: int
 
@@ -79,7 +74,6 @@ class QdrantStore:
                     score=point.score,
                     text=payload.get("text", ""),
                     source_file=payload.get("source_file", ""),
-                    record_id=payload.get("record_id", ""),
                     tag=payload.get("tag", ""),
                     chunk_index=payload.get("chunk_index", 0),
                 )

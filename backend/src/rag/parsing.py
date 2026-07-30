@@ -8,7 +8,7 @@ element with that tag (anywhere in the tree) as a record.
 from __future__ import annotations
 
 import xml.etree.ElementTree as ET
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 
 
@@ -18,7 +18,6 @@ class Record:
     tag: str
     text: str
     source_file: str
-    metadata: dict[str, str] = field(default_factory=dict) # permet de crrer un dico par instance Record
 
 
 def _element_text(element: ET.Element) -> str:
@@ -66,32 +65,13 @@ def _record_elements(root: ET.Element, record_tag: str | None) -> list[ET.Elemen
     return elements
 
 
-def _element_fields(element: ET.Element) -> dict[str, str]:
-    """Extract leaf XML values by their relative field path for exact filters."""
-    fields: dict[str, str] = {}
-
-    def visit(node: ET.Element, path: str) -> None:
-        children = list(node)
-        if not children:
-            value = (node.text or "").strip()
-            if value:
-                fields[path] = value
-            return
-        for child in children:
-            visit(child, f"{path}.{child.tag}" if path else child.tag)
-
-    for child in element:
-        visit(child, child.tag)
-    return fields
-
-
 def parse_file(path: Path, record_tag: str | None = None) -> list[Record]:
     """Parse a single XML file into records."""
     root = ET.parse(path).getroot()
     elements = _record_elements(root, record_tag)
 
     records: list[Record] = []
-    for _, element in enumerate(elements):
+    for element in elements:
         text = _element_text(element)
         if not text:
             continue
@@ -100,7 +80,6 @@ def parse_file(path: Path, record_tag: str | None = None) -> list[Record]:
                 tag=element.tag,
                 text=text,
                 source_file=path.name,
-                metadata={**dict(element.attrib), **_element_fields(element)},
             )
         )
     return records
@@ -115,12 +94,7 @@ def parse_dir(data_dir: Path, record_tag: str | None = None) -> list[Record]:
 
 
 if __name__ == "__main__":
-    from pathlib import Path
-    import xml.etree.ElementTree as ET
-
-    xml_path = Path(
-        r"data\rag\sample.xml"
-    )
+    xml_path = Path("data/rag/sample.xml")
 
     print("=" * 80)
     print("1. Chargement du XML")
@@ -156,19 +130,8 @@ if __name__ == "__main__":
 
         print("\n")
 
-        print("=" * 80)
-        print("4. Test _element_fields() sur le premier élément")
-        print("=" * 80)
-
-        fields = _element_fields(first_element)
-
-        for key, value in fields.items():
-            print(f"{key} = {value}")
-
-        print("\n")
-
     print("=" * 80)
-    print("5. Test parse_file()")
+    print("4. Test parse_file()")
     print("=" * 80)
 
     records = parse_file(xml_path)
@@ -185,10 +148,6 @@ if __name__ == "__main__":
 
         print("\nTEXT")
         print(record.text)
-
-        print("\nMETADATA")
-        for key, value in record.metadata.items():
-            print(f"{key} = {value}")
 
         break
 

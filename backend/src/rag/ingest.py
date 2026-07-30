@@ -15,18 +15,6 @@ from rag.parsing import parse_dir
 from rag.store import QdrantStore
 
 
-# def _lookup_values(fields: dict[str, str]) -> list[str]:
-#     """Build case-insensitive exact-match values from a record payload."""
-#     values = [*fields.values()]
-#     return list(
-#         dict.fromkeys(
-#             lookup_value
-#             for value in values
-#             for lookup_value in (value, value.casefold())
-#         )
-#     )
-
-
 def run_ingestion() -> int:
     """Parse, chunk, embed, and upsert all XML in the data dir. Returns count."""
     data_dir = Path(settings.rag_data_dir)
@@ -48,7 +36,6 @@ def run_ingestion() -> int:
             "source_file": chunk.source_file,
             "tag": chunk.tag,
             "chunk_index": chunk.chunk_index,
-            "fields": chunk.metadata,
         }
         for chunk in chunks
     ]

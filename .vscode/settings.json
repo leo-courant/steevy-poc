@@ -1,3 +1,16 @@
 {
-    "python.REPL.enableREPLSmartSend": false
+    "python.REPL.enableREPLSmartSend": false,
+    "github.copilot.enabled": false,
+    "github.copilot.chat.enabled": false,
+    "github.copilot.autocomplete.enable": false,
+    "copilot.autocomplete.enable": false,
+    "copilot.advanced.indexing.enabled": false,
+    "editor.inlineCompletionsEnabled": false,
+    "editor.inlineSuggestEnabled": false,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnSave": true,
+        "editor.inlineCompletionsEnabled": false,
+        "editor.inlineSuggestEnabled": false
+    }
 }

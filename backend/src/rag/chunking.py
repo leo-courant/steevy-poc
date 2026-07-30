@@ -19,7 +19,6 @@ class Chunk:
     source_file: str
     tag: str
     chunk_index: int
-    metadata: dict[str, str]
 
 
 def chunk_text(text: str, chunk_size: int, overlap: int) -> list[str]:
@@ -78,7 +77,6 @@ def chunk_records(records: list[Record], chunk_size: int, overlap: int) -> list[
                     source_file=record.source_file,
                     tag=record.tag,
                     chunk_index=index,
-                    metadata=record.metadata,
                 )
             )
     return chunks
@@ -100,15 +98,6 @@ if __name__ == "__main__":
     records = parse_file(xml_path)
 
     print(f"Nombre de records : {len(records)}\n")
-
-    # for i, record in enumerate(records, start=1):
-    #     print(f"RECORD #{i}")
-    #     print(f"tag         : {record.tag}")
-    #     print(f"source_file : {record.source_file}")
-    #     print(f"metadata    : {record.metadata}")
-    #     print("text :")
-    #     print(record.text)
-    #     print("-" * 80)
 
     print("\n")
     print("=" * 80)
@@ -153,7 +142,6 @@ if __name__ == "__main__":
         print(f"source_file : {chunk.source_file}")
         print(f"tag         : {chunk.tag}")
         print(f"chunk_index : {chunk.chunk_index}")
-        print(f"metadata    : {chunk.metadata}")
         print("text :")
         print(chunk.text)
         print("-" * 80)
