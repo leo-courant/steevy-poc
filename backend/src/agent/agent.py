@@ -7,11 +7,14 @@ tools, and hands them to `deepagents.create_deep_agent`.
 
 from __future__ import annotations
 
-import os
 from pathlib import Path
 
 from deepagents import create_deep_agent
 
+from agent.thales_integration import (
+    build_thales_chat_model,
+    configure_thales_environment,
+)
 from agent.tools import get_tools
 from config import settings
 
@@ -38,12 +41,16 @@ def _load_instructions() -> str:
 
 def build_agent():
     """Build and return the compiled LangGraph deep agent."""
-    # Make the configured key available to the OpenAI client (LangChain reads it
-    # from the environment). Respects an already-exported OPENAI_API_KEY.
-    if settings.openai_api_key:
-        os.environ.setdefault("OPENAI_API_KEY", settings.openai_api_key)
+    configure_thales_environment(settings)
+    # The Thales gateway only implements /chat/completions, and deepagents
+    # forces the /responses endpoint for string models — so hand it a
+    # pre-configured ChatOpenAI instance instead of `settings.agent_model`.
+    if settings.thales_base_url:
+        model = build_thales_chat_model(settings) # THALES_BASE_URL needs to be filled
+    else:
+        model = settings.agent_model
     return create_deep_agent(
-        model=settings.agent_model,
+        model=model,
         tools=get_tools(),
         system_prompt=_load_instructions(),
     )

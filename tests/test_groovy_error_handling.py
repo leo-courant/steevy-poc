@@ -14,7 +14,7 @@ from agent.tools.groovy_tools import (
     _validate_groovy_opts,
 )
 from frontend.app import (
-    _generic_tool_error_message,
+    _tool_error_message,
     _is_abandonment,
     _missing_fields_question,
     _pending_operation,
@@ -153,10 +153,17 @@ def test_resume_prompt_preserves_action_and_partial_options() -> None:
     assert "n'appelle pas l'outil" in prompt
 
 
-def test_unrelated_tool_error_is_safe_for_the_user() -> None:
-    assert _pending_operation("add_boat", RuntimeError("private traceback"), {}) is None
-    assert "traceback" not in _generic_tool_error_message().lower()
-    assert "private" not in _generic_tool_error_message().lower()
+def test_unrelated_tool_error_shows_a_bounded_technical_detail() -> None:
+    assert _pending_operation("add_boat", RuntimeError("connexion refusée"), {}) is None
+
+    message = _tool_error_message(RuntimeError("connexion refusée"))
+    assert "L’opération n’a pas abouti" in message
+    assert "RuntimeError: connexion refusée" in message
+    # Only the exception summary is shown — never a full traceback,
+    # and long messages are truncated.
+    assert "Traceback (most recent call last)" not in message
+    long_message = _tool_error_message(RuntimeError("x" * 1000))
+    assert len(long_message) < 600
 
 
 def test_explicit_abandonment_clears_the_pending_operation() -> None:

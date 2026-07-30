@@ -12,6 +12,7 @@ into the Chainlit UI:
 from __future__ import annotations
 
 import json
+import logging
 import re
 from collections.abc import Mapping
 
@@ -19,6 +20,8 @@ import chainlit as cl
 
 from agent.agent import build_agent
 from agent.tools.groovy_tools import MissingGroovyFieldsError
+
+logger = logging.getLogger(__name__)
 
 
 _MISSING_FIELDS_RE = re.compile(r"missing required field\(s\):\s*([^\.]+)", re.IGNORECASE)
@@ -100,10 +103,11 @@ async def on_message(message: cl.Message) -> None:
                     await cl.Message(content=_missing_fields_question(pending_operation)).send()
                     cl.user_session.set("pending_operation", pending_operation)
                 else:
+                    logger.error("Tool %s failed: %s", event["name"], error)
                     if step is not None:
-                        step.output = "Échec de l'opération."
+                        step.output = f"Échec de l'opération : {_error_detail(error)}"
                         await step.update()
-                    await cl.Message(content=_generic_tool_error_message()).send()
+                    await cl.Message(content=_tool_error_message(error)).send()
                     cl.user_session.set("pending_operation", None)
 
             elif kind == "on_chat_model_stream":
@@ -112,12 +116,13 @@ async def on_message(message: cl.Message) -> None:
                     if answer is None:
                         answer = cl.Message(content="")
                     await answer.stream_token(token)
-    except Exception:
+    except Exception as exc:
+        logger.exception("Agent run failed")
         if not handled_error:
             for step in open_steps.values():
-                step.output = "Échec de l'opération."
+                step.output = f"Échec de l'opération : {_error_detail(exc)}"
                 await step.update()
-            await cl.Message(content=_generic_tool_error_message()).send()
+            await cl.Message(content=_tool_error_message(exc)).send()
             cl.user_session.set("pending_operation", None)
         handled_error = True
 
@@ -213,8 +218,18 @@ def _resume_prompt(operation: Mapping[str, object], reply: str) -> str:
     )
 
 
-def _generic_tool_error_message() -> str:
-    return "L’opération n’a pas abouti. Vérifiez les informations fournies et réessayez."
+def _error_detail(error: object, limit: int = 400) -> str:
+    """One-line technical summary of an exception, truncated for display."""
+    detail = str(error).strip() or repr(error)
+    detail = f"{type(error).__name__}: {detail}" if isinstance(error, Exception) else detail
+    return detail[:limit] + ("…" if len(detail) > limit else "")
+
+
+def _tool_error_message(error: object) -> str:
+    return (
+        "L’opération n’a pas abouti. Vérifiez les informations fournies et réessayez.\n\n"
+        f"Détail technique :\n```\n{_error_detail(error)}\n```"
+    )
 
 
 def _is_abandonment(message: str) -> bool:
